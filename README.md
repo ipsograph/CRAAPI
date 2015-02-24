@@ -9,12 +9,20 @@ That said, I wrote this code as part of a 'final project' for CLPS 1520 at Brown
 
 Be warned - This code will likely require some Java tinkering on your part. Matlab can be touchy when it comes to compiled versions of JAR files. In the particular version of Matlab I used (R2013a Student for Windows), I had to ensure that the Jar files were compiled for Java 6 (even though I've been using later versions).
 
-This software (CRAAPI) is provided under the MIT License (see licenses in the java directory). The Java project (Eclipse IDE) contains a Maven POM, which declares Xuggler as a dependency. This is only true if you intend to use the video support included in this project. Since this build of Xuggler is GPL, you will have to get it yourself (easy with Maven).
+<b>Licensing</b>
 
-Getting Started
+This software (CRAAPI) is provided under the MIT License (see LICENSE file). The Java project (Eclipse IDE) contains a Maven POM, which declares Xuggler as a dependency. This is only true if you intend to use the video support included in this project. Since this build of Xuggler is GPL, you will have to get it yourself (easy with Maven).
 
-Once you have downloaded the code, you can either tinker in Java or Matlab. If you are interested in Matlab, take a look at dronedriver_demo.m. This file shows you how to connect to the drone, process video, and command the drone to take simple actions. Note that without a drone to connect to, you may run into some issues (such as Matlab locking up while it attempts to connect). You can fiddle with the various flags in order to run demo/droneless versions of the script.
+<b>Getting Started</b>
 
-If you want to tinker in Java, take a look at the org.craapi.drone.matlab and org.craapi.drone.test packages. These contain simple examples of API usage.
+1. Download the repo
+2. Download xuggler (via Maven, preferably - see java project) and place in the matlab/java directory (there is a README there with more details)
+3. Try it out
+
+Once you have downloaded the code and pre-built Java libraries (including xuggler), you can either tinker in Java or Matlab. From an API perspective, the Java portion handles the nuts and bolts of the ARDrone connection (socket management, message formatting and parsing, state management, and video processing). The Matlab interface abstracts most of these details away and is intended to provide a 'simple' interface to the drone.
+
+If you are interested in Matlab, take a look at the <code>dronedriver_demo.m</code> script. This script shows you how to connect to the drone, process video, and command the drone to take simple actions. Note that without a drone to connect to, you may run into some issues (such as Matlab locking up while it attempts to connect). You can fiddle with the various flags in order to run demo/droneless versions of the script. One lesson I learned while playing around in Matlab is that Java (in matlab) can have some serious memory issues. It may be due to a leak within CRAAPI or due to poor cleanup in my Matlab code. Either way, take care with memory management. The drone video can really take a toll on Matlab.
+
+If you want to tinker in Java, take a look at the <code>org.craapi.drone.matlab</code> and <code>org.craapi.drone.test</code> packages. These contain simple examples of API usage.
 
 Good luck!
